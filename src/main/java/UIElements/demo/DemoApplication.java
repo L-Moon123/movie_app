@@ -20,8 +20,12 @@ public class DemoApplication {
 	private Actor_Repository actor_repository;
 
 	@Autowired
-	public DemoApplication(Actor_Repository a) {
+	private Film_Repository film_repository;
+
+	@Autowired
+	public DemoApplication(Actor_Repository a, Film_Repository f) {
 		this.actor_repository = a;
+		this.film_repository = f;
 
 	}
 
@@ -71,5 +75,20 @@ public class DemoApplication {
 		actor_repository.deleteById(actorid);
 
 	}
+
+
+	//get mapping to get all films
+	@GetMapping("/allFilms")
+	public @ResponseBody Iterable<Film> getAllFilms() {
+		return film_repository.findAll();
+	}
+
+	//get mapping for single film
+	@GetMapping("/getFilm/{filmid}")
+	public @ResponseBody Film getFilm(@PathVariable int filmid) {
+		return film_repository.findById(filmid).orElseThrow(() -> new FilmNotFoundException(filmid));
+
+	}
+
 
 }
