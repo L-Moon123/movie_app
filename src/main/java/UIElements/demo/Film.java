@@ -2,6 +2,8 @@ package UIElements.demo;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name="film")
 public class Film {
@@ -18,6 +20,13 @@ public class Film {
 
     @Column(name="release_year")
     int release_year;
+
+    @Column(name="language_id")
+    int language_id;
+
+    @ManyToMany(mappedBy = "films")
+    private List<Actor> actors;
+
 
     public Film() {
 
@@ -53,5 +62,13 @@ public class Film {
 
     public void setRelease_year(int release_year) {
         this.release_year = release_year;
+    }
+
+    public int getLanguage_id() {
+        return language_id;
+    }
+
+    public void setLanguage_id(int language_id) {
+        this.language_id = language_id;
     }
 }

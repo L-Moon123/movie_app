@@ -1,6 +1,8 @@
 package UIElements.demo;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name="actor")
 public class Actor {
@@ -15,6 +17,14 @@ public class Actor {
     @Column(name="last_name")
     String lastname;
 
+
+    @ManyToMany
+    @JoinTable(
+            name="film_actor",
+    joinColumns = @JoinColumn(name="actor_id", referencedColumnName="actor_id"),
+    inverseJoinColumns = @JoinColumn(name="film_id", referencedColumnName = "film_id")
+    )
+    private List<Actor> films;
 
 
 

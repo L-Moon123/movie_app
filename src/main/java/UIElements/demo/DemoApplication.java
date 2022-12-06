@@ -90,5 +90,35 @@ public class DemoApplication {
 
 	}
 
+	//put mapping for changing film details
+	@PutMapping("updateFilm/{filmid}")
+	public Film updateFilm(@RequestBody Film newFilm, @PathVariable int filmid) {
+		return film_repository.findById(filmid)
+				.map(film ->
+		{film.setFilm_description(newFilm.getFilm_description());
+			film.setFilm_title(newFilm.getFilm_title());
+			film.setRelease_year(newFilm.getRelease_year());
+			film.setLanguage_id(newFilm.getLanguage_id());
+			return film_repository.save(film);
+		}).orElseGet(() -> {
+			newFilm.setFilm_id(filmid);
+			return film_repository.save(newFilm);
+		});
+	}
+
+	//post mapping to add film
+	@PostMapping("/newFilm")
+	public Film newFilm(@RequestBody Film newFilm) {
+		return film_repository.save(newFilm);
+
+	}
+
+	//delete mapping to delete film
+	@DeleteMapping("/deleteFilm/{filmid}")
+	public void deleteFilm(@PathVariable int filmid) {
+		film_repository.deleteById(filmid);
+
+	}
+
 
 }
