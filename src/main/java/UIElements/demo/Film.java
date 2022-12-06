@@ -24,8 +24,8 @@ public class Film {
     @Column(name="language_id")
     int language_id;
 
-    @ManyToMany(mappedBy = "films")
-    private List<Actor> actors;
+/*    @ManyToMany(mappedBy = "films")
+    private List<Actor> actors;*/
 
 
     public Film() {
