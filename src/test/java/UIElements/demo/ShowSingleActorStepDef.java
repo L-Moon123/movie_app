@@ -31,7 +31,7 @@ public class ShowSingleActorStepDef {
     @Then("the webpage should show the actors {string} and {string}")
     public void the_webpage_should_show_the_actors_firstname_and_lastname(String firstname, String lastname) {
         String correctDetails = firstname + " " + lastname;
-        String testDetails = chosenActor.getFirstname() + chosenActor.getLastname();
+        String testDetails = chosenActor.getFirstname() + " " + chosenActor.getLastname();
         Assertions.assertEquals(correctDetails, testDetails, "Actor details do not match");
 
 

@@ -8,5 +8,5 @@ Feature: Get a specific actor
     Then the webpage should show the actors "<firstname>" and "<lastname>"
     Examples:
       | actorID | firstname | lastname |
-      | 1       | PENELOPE  | GUINESS  |
+      | 1       | Brian  | Jones  |
       | 5       | JOHNNY    | LOLLOBRIGIDA |

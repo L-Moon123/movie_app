@@ -22,10 +22,12 @@ public class DemoApplication {
 	@Autowired
 	private Film_Repository film_repository;
 
+
 	@Autowired
 	public DemoApplication(Actor_Repository a, Film_Repository f) {
 		this.actor_repository = a;
 		this.film_repository = f;
+
 
 	}
 
@@ -118,6 +120,20 @@ public class DemoApplication {
 	public void deleteFilm(@PathVariable int filmid) {
 		film_repository.deleteById(filmid);
 
+	}
+
+	//QUERY ANNOTATION RELATED METHODS
+
+	//get mapping to get all films and their actors
+	@GetMapping("/allFilmsActors")
+	public @ResponseBody Iterable<Object> getFilmsActors() {
+		return film_repository.getFilmsActors();
+	}
+
+	//get mapping to get all films associated to an actor
+	@GetMapping("/allFilmsForActorById/{actorid}")
+	public @ResponseBody Iterable<Object> getFilmsForActorById(@PathVariable int actorid) {
+		return film_repository.getFilmsForActorById(actorid);
 	}
 
 
